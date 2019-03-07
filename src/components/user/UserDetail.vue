@@ -1,7 +1,18 @@
 <template>
-  <div>
+  <div class="mt-3">
     <h1>User Detail</h1>
     <p>ID User : {{ id }}</p>
+    <hr>
+    <router-link
+      tag="button"
+      class="btn btn-warning btn-block"
+      :to="{name: 'useredit', params: {id: $route.params.id}, query: {locate: 'vi', browser: 'chrome'}}"
+    >Edit user
+    </router-link>
+    <!--Cách 1 , truyền dạng chuỗi bình thường-->
+    <!--:to="'/user/' + $route.params.id + '/edit'"-->
+    <!--Cách 2 , dùng name router-->
+    <!--:to="{name: 'useredit', params: {id: $route.params.id}}"-->
   </div>
 </template>
 

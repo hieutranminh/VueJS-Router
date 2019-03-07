@@ -7,6 +7,8 @@ import { routes } from './routes.js'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
+  // Chế độ hash mode : https://router.vuejs.org/guide/essentials/history-mode.html
+  // mode: 'history',
   routes
 })
 Vue.config.productionTip = false

@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <h1>User</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid architecto asperiores culpa doloremque
-      dolorum, expedita id iste officiis possimus? Cupiditate exercitationem illo iure labore perferendis possimus! Ex,
-      illo, libero?</p>
-    <hr>
-    <button class="btn btn-danger" @click="backHome">Back to home</button>
-    <button class="btn btn-danger" @click="goDetails">Go User Detail</button>
-    <router-view></router-view>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="mt-3">
+        <h1 class="text-center">User Management</h1>
+        <p class="text-center">This is area to manage user of website</p>
+        <hr>
+        <button class="btn btn-danger btn-block" @click="backHome">Back to home</button>
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,6 +18,8 @@ export default {
     backHome () {
       // PUSH lên url để chuyển trang
       this.$router.push('/')
+      // Có thể dùng name trong routes để dễ nhớ
+      // this.$router.push({name: 'homepage'})
     },
     goDetails () {
       this.$router.push('/user/10')

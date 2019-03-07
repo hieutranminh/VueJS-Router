@@ -26,14 +26,14 @@
           <router-link
             tag="li"
             class="nav-item"
-            to="/user/1"
+            to="/test01"
             active-class="active">
             <a href="#" class="nav-link">Test Admin 01</a>
           </router-link>
           <router-link
             tag="li"
             class="nav-item"
-            to="/user/2"
+            to="/test02"
             active-class="active">
             <a href="#" class="nav-link">Test Admin 02</a>
           </router-link>
