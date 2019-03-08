@@ -7,9 +7,25 @@ import { routes } from './routes.js'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
-  // Chế độ hash mode : https://router.vuejs.org/guide/essentials/history-mode.html
-  // mode: 'history',
-  routes
+  // Keyword : Vue-element-admin : hiệu ứng chuyển router trong vue js
+  // Chế độ mode history : https://router.vuejs.org/guide/essentials/history-mode.html
+  mode: 'history',
+  routes,
+  // Scroll Behavior , ket hop voi Hash Fragments
+  scrollBehavior (to, from, savedPosition) {
+    // return { x: 0, y: 700 }
+    if (savedPosition) {
+      return savedPosition
+    }
+    if (to.hash) {
+      return { selector: to.hash }
+    }
+  }
+})
+// Làm 1 cái gì đó mỗi lần trước khi chạy
+router.beforeEach((to, from, next) => {
+  console.log('Load Global Guard')
+  next()
 })
 Vue.config.productionTip = false
 
