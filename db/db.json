@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Breakfast",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Do morning exercise",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "Have lunch",
+      "completed": false
+    }
+  ]
+}
