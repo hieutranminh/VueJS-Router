@@ -5,13 +5,15 @@
     <AddTodo></AddTodo>
     <ul class="item-todo">
       <!--Checkbox Select All & RemoveAll-->
-      <SelectedAll></SelectedAll>
+      <selected-all></selected-all>
       <!-- For ItemTodo -->
       <ItemTodo
-        v-for="(item) in $store.state.dataTodo"
+        v-for="(item) in filterTodo"
         :key="item.id"
         :itemTodo="item">
       </ItemTodo>
+      <!--Checkbox Select All & RemoveAll-->
+      <selected-all></selected-all>
     </ul>
     <!-- Filter Category -->
     <FilterCategory></FilterCategory>
@@ -29,6 +31,11 @@ export default {
     ItemTodo,
     FilterCategory,
     AddTodo
+  },
+  computed: {
+    filterTodo () {
+      return this.$store.getters.filterAll
+    }
   },
   created () {
     // e lay data cho tao . xiu nua tao can no sau chu ko can no bay gio
@@ -65,6 +72,7 @@ export default {
     background: yellow;
     padding: 3px;
     cursor: pointer;
+    outline: none;
   }
   .footer-todo .status.active {
     background: chocolate;
@@ -157,11 +165,18 @@ export default {
   .selectAll{
     padding: 5px;
     margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #ff450094;
+    font-size: 12px;
+    border-radius: 5px;
+    background: lightgoldenrodyellow;
+    box-sizing: border-box;
   }
   .rmselected{
     padding: 3px ;
     border: 1px solid black;
-    float: right;
     cursor: pointer;
   }
   .clear{

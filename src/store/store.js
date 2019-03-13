@@ -5,13 +5,24 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-  // strict: true,
+  strict: true,
   state: {
     dataTodo: [],
-    checked: false,
-    filter: 'all'
+    filter: 'all',
+    check: false
   },
   getters: {
+    filterAll: state => {
+      if (state.filter === 'all') {
+        return state.dataTodo
+      } else if (state.filter === 'active') {
+        return state.dataTodo.filter(todo => !todo.completed)
+      } else if (state.filter === 'done') {
+        return state.dataTodo.filter(todo => todo.completed)
+      } else {
+        return state.dataTodo
+      }
+    }
   },
   mutations: {
     setData (state, data) {
@@ -24,8 +35,31 @@ export const store = new Vuex.Store({
         'completed': false
       })
     },
+    deleteTodo (state, index) {
+      state.dataTodo.splice(index, 1)
+    },
+    saveTodo (state, arr) {
+      state.dataTodo[arr[0]].title = arr[1]
+    },
     changeCompleted (state, index) {
       state.dataTodo[index].completed = !state.dataTodo[index].completed
+    },
+    filterTodo (state, value) {
+      if (value === 'all') {
+        state.filter = 'all'
+      } else if (value === 'active') {
+        state.filter = 'active'
+      } else if (value === 'done') {
+        state.filter = 'done'
+      }
+    },
+    selectAllTodo (state, check) {
+      state.check = check
+      state.dataTodo.filter(todo => {
+        if (todo.completed !== check) {
+          todo.completed = check
+        }
+      })
     }
   },
   actions: {

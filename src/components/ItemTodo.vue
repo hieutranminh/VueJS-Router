@@ -1,8 +1,8 @@
 <template>
   <div>
-    <li v-if="!isShowEdit" :class="{ done: check }">
+    <li v-if="!isShowEdit" :class="{ done: itemTodo.completed }">
       <input type="checkbox"
-             v-model="check"
+             :checked="itemTodo.completed"
              @click="testCheck">
       <span>{{itemTodo.title}}</span>
       <button
@@ -32,7 +32,6 @@
 export default {
   data () {
     return {
-      check: false,
       isShowEdit: false,
       editTitle: ''
     }
@@ -49,11 +48,11 @@ export default {
     saveEdit () {
       this.isShowEdit = false
       let index = this.$store.state.dataTodo.findIndex(item => item.id === this.itemTodo.id)
-      this.$store.state.dataTodo[index].title = this.editTitle
+      this.$store.commit('saveTodo', [index, this.editTitle])
     },
     deleteEdit () {
       let index = this.$store.state.dataTodo.findIndex(item => item.id === this.itemTodo.id)
-      this.$store.state.dataTodo.splice(index, 1)
+      this.$store.commit('deleteTodo', index)
     },
     testCheck () {
       let index = this.$store.state.dataTodo.findIndex(item => item.id === this.itemTodo.id)
