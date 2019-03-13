@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
   state: {
     dataTodo: [],
     filter: 'all',
-    check: false
+    check: true
   },
   getters: {
     filterAll: state => {
