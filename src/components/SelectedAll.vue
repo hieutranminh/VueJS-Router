@@ -11,6 +11,7 @@
 <script>
 export default {
   computed: {
+    // Cach 1 : Get Set trực tiếp store.state
     check: {
       get () {
         // store -> check
@@ -22,6 +23,15 @@ export default {
         this.$store.commit('selectAllTodo', value)
       }
     }
+    // Cách 2 : Get Set thông qua getters
+    // changeCheck: {
+    //   get () {
+    //     return this.$store.getters.changeCheck
+    //   },
+    //   set (value) {
+    //     this.$store.commit('selectAllTodo', value)
+    //   }
+    // }
   }
 }
 </script>

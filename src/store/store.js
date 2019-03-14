@@ -9,7 +9,7 @@ export const store = new Vuex.Store({
   state: {
     dataTodo: [],
     filter: 'all',
-    check: true
+    check: false
   },
   getters: {
     filterAll: state => {
@@ -23,6 +23,9 @@ export const store = new Vuex.Store({
         return state.dataTodo
       }
     }
+    // changeCheck: state => {
+    //   return state.check
+    // }
   },
   mutations: {
     setData (state, data) {
@@ -30,7 +33,7 @@ export const store = new Vuex.Store({
     },
     addTodo (state, todo) {
       state.dataTodo.push({
-        'id': (state.dataTodo.length) + (Math.random() * 200) + 2000,
+        'id': (state.dataTodo.length) + Math.round(Math.random() * 200) + 2000,
         'title': todo,
         'completed': false
       })
@@ -55,7 +58,7 @@ export const store = new Vuex.Store({
     },
     selectAllTodo (state, check) {
       state.check = check
-      state.dataTodo.filter(todo => {
+      state.dataTodo.forEach(todo => {
         if (todo.completed !== check) {
           todo.completed = check
         }
