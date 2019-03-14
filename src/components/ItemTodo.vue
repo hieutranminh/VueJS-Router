@@ -38,9 +38,6 @@ export default {
   },
   props: ['itemTodo'],
   methods: {
-    checked () {
-      this.$store.commit('checkedTodo')
-    },
     showEdit () {
       this.isShowEdit = true
       this.editTitle = this.itemTodo.title
@@ -57,7 +54,8 @@ export default {
     testCheck () {
       let index = this.$store.state.dataTodo.findIndex(item => item.id === this.itemTodo.id)
       this.$store.commit('changeCompleted', index)
-      console.log(this.$store.state.dataTodo)
+
+      console.log('Change completed object', this.$store.state.dataTodo)
     }
   }
 }

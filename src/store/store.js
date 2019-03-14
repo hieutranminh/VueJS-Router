@@ -9,7 +9,8 @@ export const store = new Vuex.Store({
   state: {
     dataTodo: [],
     filter: 'all',
-    check: false
+    check: false,
+    dataDone: []
   },
   getters: {
     filterAll: state => {
@@ -23,9 +24,6 @@ export const store = new Vuex.Store({
         return state.dataTodo
       }
     }
-    // changeCheck: state => {
-    //   return state.check
-    // }
   },
   mutations: {
     setData (state, data) {
@@ -46,6 +44,18 @@ export const store = new Vuex.Store({
     },
     changeCompleted (state, index) {
       state.dataTodo[index].completed = !state.dataTodo[index].completed
+      if (state.dataTodo[index].completed) {
+        state.dataDone.push(state.dataTodo[index])
+        // console.log('push on dataDone : ', state.dataDone)
+        if (state.dataDone.length === state.dataTodo.length) {
+          // console.log('Check All Roi')
+          state.check = true
+        }
+      } else {
+        state.dataDone.splice(index, 1)
+        state.check = false
+        // console.log('remove on dataDone : ', state.dataDone)
+      }
     },
     filterTodo (state, value) {
       if (value === 'all') {
@@ -63,6 +73,9 @@ export const store = new Vuex.Store({
           todo.completed = check
         }
       })
+    },
+    removeAllDone (state, check) {
+      state.dataTodo = state.dataTodo.filter(todo => !todo.completed)
     }
   },
   actions: {

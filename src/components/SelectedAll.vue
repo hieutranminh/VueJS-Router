@@ -5,11 +5,16 @@
         v-model="check"
         type="checkbox"> Select all | boolean : {{check}}
     </div>
-    <button class="rmselected">remove selected</button>
+    <button @click="removeAllDone" class="rmselected">remove selected</button>
   </div>
 </template>
 <script>
 export default {
+  methods: {
+    removeAllDone () {
+      this.$store.commit('removeAllDone', this.check)
+    }
+  },
   computed: {
     // Cach 1 : Get Set trực tiếp store.state
     check: {
