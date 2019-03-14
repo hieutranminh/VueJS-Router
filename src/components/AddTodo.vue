@@ -3,7 +3,7 @@
     type="text"
     class="input-text"
     ref="add"
-    placeholder="What need to be done?" @keyup.enter="addData">
+    placeholder="What need to be done?" @keypress.exact.prevent.enter="addData">
 </template>
 <script>
 export default {

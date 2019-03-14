@@ -33,7 +33,7 @@ export const store = new Vuex.Store({
     },
     addTodo (state, todo) {
       state.dataTodo.push({
-        'id': (state.dataTodo.length) + Math.round(Math.random() * 200) + 2000,
+        'id': (state.dataTodo.length) + 1,
         'title': todo,
         'completed': false
       })
